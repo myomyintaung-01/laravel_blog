@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest
+class UpdatePhotoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,12 +24,7 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            "title"=> 'required|min:3|unique:posts',
-            "category"=> "required|exists:categories,id",
-            "description"=> "required|min:10",
-            "photos" => "required",
-            "photos.*" => "mimes:jpeg,jpg,png|file|max:512",
-            "feature_image"=> "nullable|mimes:jpeg,jpg,png|file|max:512"
+            //
         ];
     }
 }

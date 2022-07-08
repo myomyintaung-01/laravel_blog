@@ -41,11 +41,16 @@
             </div>
             @isset($post->featured_image)
                 <div class="mb-3">
-                    <img src="{{ asset('storage/'.$post->featured_image) }}" class="w-100" alt="">
+                    <img src="{{ asset('storage/'.$post->featured_image) }}" height="200" class="rounded" alt="">
                 </div>
             @endisset
             <div class="">
                 <p class=""> {{ $post->description }}</p>
+            </div>
+            <div class="d-flex mb-2">
+                @foreach($post->photos as $photo)
+                    <img src="{{ asset('storage/'.$photo->name) }}" height="150" class="rounded me-2" alt="">
+                @endforeach
             </div>
             <div class="d-flex justify-content-between">
                 <a href="{{ route('post.index') }}" class="btn btn-outline-primary">Post List</a>

@@ -18,6 +18,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NationController;
+use App\Http\Controllers\PhotoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,5 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/category',CategoryController::class);
     Route::resource('/user',UserController::class);
     Route::resource('/nation',NationController::class);
+    Route::resource('/photos',PhotoController::class);
 });
 

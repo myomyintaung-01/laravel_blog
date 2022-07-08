@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -49,6 +50,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+//        saving post
         $post = new Post();
         $post->title = $request->title;
         $post->slug = Str::slug($request->title);
@@ -64,6 +66,21 @@ class PostController extends Controller
         }
 
         $post->save();
+
+//        saving photo
+//        save to store
+        foreach ( $request->photos as $photo ){
+            $newName = uniqid()."_post_photo.".$photo->extension();
+            $photo->storeAs('public',$newName);
+
+//        save to db
+            $photo = new Photo();
+            $photo->post_id = $post->id;
+            $photo->name = $newName;
+            $photo->save();
+
+        }
+
         return redirect()->route('post.index')->with('status', $post->title .' is added successfully');
     }
 
@@ -79,8 +96,8 @@ class PostController extends Controller
             return abort('403','You are not an authorizer');
         }
 
-        return $post->category;
-//        return view('post.show',compact('post'));
+//        return $post->category;
+        return view('post.show',compact('post'));
 
     }
 
@@ -128,6 +145,20 @@ class PostController extends Controller
         }
 
         $post->update();
+
+ //       saving photo
+//        save to store
+        foreach ($request->photos as $photo){
+            // 1.save to storage
+            $newName = uniqid()."_post_photo.".$photo->extension();
+            $photo->storeAs("public",$newName);
+
+            // 2.save to db
+            $photo = new Photo();
+            $photo->post_id = $post->id;
+            $photo->name = $newName;
+            $photo->save();
+        }
         return redirect()->route('post.index')->with('status', $post->title .' is updated successfully');
     }
 

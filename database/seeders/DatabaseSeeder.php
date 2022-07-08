@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -26,5 +27,8 @@ class DatabaseSeeder extends Seeder
              PostSeeder::class
          ]);
 
+            $photos = Storage::allFiles('public');
+            array_shift($photos);
+            Storage::delete($photos);
     }
 }

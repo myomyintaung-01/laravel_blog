@@ -17,6 +17,10 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function photos() {
+        return $this->hasMany(Photo::class);
+    }
+
     public function hasFile(string $string)
     {
     }
