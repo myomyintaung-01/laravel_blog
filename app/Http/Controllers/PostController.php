@@ -27,6 +27,7 @@ class PostController extends Controller
         })
             ->latest('id')
             ->when(Auth::user()->role === 'author', fn($q) => $q->where('user_id',Auth::id()))
+            ->with(['category','user'])
             ->paginate(10)
             ->withQueryString();
         return view('post.index',compact('posts'));
@@ -132,7 +133,8 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->excerpt = Str::words($post->description,50,'.....');
         $post->category_id = $request->category;
-        $post->user_id = Auth::id();
+//        change edit name
+//        $post->user_id = Auth::id();
         if ($request->hasFile('featured_image')){
 
 //            delete old photo
@@ -179,6 +181,14 @@ class PostController extends Controller
         if (isset($post->featured_image)){
             Storage::delete('public/'.$post->featured_image);
         }
+        foreach ($post->photos as $photo){
+            //remove from storage
+            Storage::delete("public/".$photo->name);
+
+            //delete from table
+            $photo->delete();
+        }
+
         $post->delete();
         return redirect()->route('post.index')->with('status', $postTitle .' is deleted successfully');
     }

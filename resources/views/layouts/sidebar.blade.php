@@ -1,6 +1,7 @@
 <div class="list-group mb-3">
     <a href="{{ route('home') }}" class="list-group-item list-group-item-action">Home</a>
     <a href="{{ route('test') }}" class="list-group-item list-group-item-action">Test</a>
+    <a href="{{ route('photos.index') }}" class="list-group-item list-group-item-action">Gallery</a>
 </div>
 
 <p class="text-black-50 mb-1 ">Manage Post</p>

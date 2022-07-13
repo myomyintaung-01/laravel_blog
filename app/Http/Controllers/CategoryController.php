@@ -21,6 +21,7 @@ class CategoryController extends Controller
     {
         $categories = Category::latest('id')
             ->when(Auth::user()->role === "author",fn($q) => $q->where("user_id",Auth::id()))
+            ->with('user')
             ->get();
         return view('category.index',compact('categories'));
 

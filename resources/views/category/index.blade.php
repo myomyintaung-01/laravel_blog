@@ -19,6 +19,7 @@
                         @if(\Illuminate\Support\Facades\Auth::user()->role != 'author')
                         <th>Author</th>
                         @endif
+                        <th>Post Count</th>
                         <th>Control</th>
                         <th>Created_at</th>
                     </tr>
@@ -35,6 +36,7 @@
                             @if(\Illuminate\Support\Facades\Auth::user()->role != 'author')
                             <td>{{ $category->user->name }}</td>
                             @endif
+                            <td>{{ $category->posts()->count() }}</td>
                             <td>
                                 <a href="{{ route('category.show',$category->id ) }}" class="btn btn-sm btn-outline-dark">
                                     <i class="bi bi-info-circle"></i>
