@@ -47,9 +47,9 @@
             <div class="">
                 <p class=""> {{ $post->description }}</p>
             </div>
-            <div class="d-flex mb-2">
+            <div class="d-flex flex-wrap mb-2">
                 @foreach($post->photos as $photo)
-                    <img src="{{ asset('storage/'.$photo->name) }}" height="150" class="rounded me-2" alt="">
+                    <img src="{{ asset('storage/'.$photo->name) }}" height="150" class="rounded m-2" alt="">
                 @endforeach
             </div>
             <div class="d-flex justify-content-between">

@@ -36,7 +36,7 @@
                             @if(\Illuminate\Support\Facades\Auth::user()->role != 'author')
                             <td>{{ $category->user->name }}</td>
                             @endif
-                            <td>{{ $category->posts()->count() }}</td>
+                            <td>{{ $category->post()->count() }}</td>
                             <td>
                                 <a href="{{ route('category.show',$category->id ) }}" class="btn btn-sm btn-outline-dark">
                                     <i class="bi bi-info-circle"></i>

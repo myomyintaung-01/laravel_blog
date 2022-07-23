@@ -53,9 +53,9 @@
                 </div>
 {{--                photos--}}
                 <div class="mb-3">
-                    <div class="d-flex">
+                    <div class="d-flex flex-wrap">
                         @foreach($post->photos as $photo)
-                            <div class="position-relative me-3">
+                            <div class="position-relative m-2">
                                 <img src="{{ asset('storage/'.$photo->name) }}" height="100" class="rounded" alt="">
                                 <form action="{{ route('photos.destroy',$photo->id) }}" class="" method="post">
                                     @csrf
@@ -94,8 +94,7 @@
                         rows="10"
                         form="updatePostForm"
                         class="form-control @error('description') is-invalid @enderror"
-                    >
-                        {{ old('description',$post->description) }}
+                    >{{ old('description',$post->description) }}
                     </textarea>
                     @error('description')
                     <div class="invalid-feedback">{{ $message }}</div>

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600&display=swap');
+@import "~venobox/dist/venobox.min.css";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+$font-family-sans-serif: 'Josefin Sans', sans-serif;
+
+
+$carousel-control-color: #984070;
+
+
+@import "~bootstrap/scss/bootstrap";
+
+
+
+.detail-img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}

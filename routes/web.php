@@ -24,14 +24,14 @@ use App\Http\Controllers\PageController;
 
 Route::get('/', [PageController::class , 'index'])->name('page.index');
 Route::get('/detail/{slug}', [PageController::class , 'detail'])->name('page.detail');
-Route::get("/cat/{category:slug}",[PageController::class,'postByCategory'])->name('page.category');
+Route::get("/category/{category:slug}",[PageController::class,'postByCategory'])->name('page.category');
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/test', [HomeController::class, 'test'])->name('test');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->prefix()->group(function () {
     Route::resource('/post',PostController::class);
     Route::resource('/category',CategoryController::class);
     Route::resource('/user',UserController::class);
